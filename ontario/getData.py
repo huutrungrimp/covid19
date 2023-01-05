@@ -24,25 +24,28 @@ def getDemographyData():
     conf_phu = pd.read_csv("https://data.ontario.ca/dataset/f4112442-bdc8-45d2-be3c-12efae72fb27/resource/455fd63b-603d-4608-8216-7d8647f43350/download/conposcovidloc.csv", usecols = ['Case_Reported_Date', 'Age_Group', 'Client_Gender'], low_memory = True)
     conf_phu['count']=1
 
-    age = conf_phu[['Case_Reported_Date', 'Age_Group']]
-    age=conf_phu.groupby(['Case_Reported_Date', 'Age_Group']).count().reset_index()
-    age=age.pivot(index='Case_Reported_Date', columns='Age_Group', values='count')
+    # age = conf_phu[['Case_Reported_Date', 'Age_Group']]
+    # age=conf_phu.groupby(['Case_Reported_Date', 'Age_Group']).count().reset_index()
+    # age=age.pivot(index='Case_Reported_Date', columns='Age_Group', values='count')
+    # age = age.drop('UNKNOWN', axis=1)
     
-    result = age.to_json(orient="table")
-    parsed = json.loads(result)
-    age_json = parsed['data']
-    age_json
+    # result = age.to_json(orient="table")
+    # parsed = json.loads(result)
+    # age_json = parsed['data']
+    # age_json
 
     gender = conf_phu[['Case_Reported_Date', 'Client_Gender', 'count']]
     gender=gender.groupby(['Case_Reported_Date', 'Client_Gender']).count().reset_index()
     gender=gender.pivot(index='Case_Reported_Date', columns='Client_Gender', values='count')
+    gender = gender.drop(['GENDER DIVERSE', 'UNSPECIFIED'], axis=1)
+    
     result = gender.to_json(orient="table")
     parsed = json.loads(result)
     gender_json = parsed['data']
     gender_json
 
     demography = {
-        'age': age_json,
+        'age': 'age_json',
         'gender':gender_json
     }
     return demography
