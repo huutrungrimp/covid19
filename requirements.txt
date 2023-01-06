@@ -6,8 +6,10 @@ django-cors-headers==3.10.1
 django-heroku==0.3.1
 django-rest-auth==0.9.5
 djangorestframework==3.13.1
+memory-profiler==0.61.0
 numpy==1.24.1
 pandas==1.5.2
+psutil==5.9.4
 psycopg2==2.9.3
 pycodestyle==2.10.0
 python-dateutil==2.8.2
