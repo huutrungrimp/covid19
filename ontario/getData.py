@@ -7,7 +7,7 @@ import os
 import datetime
 from urllib.error import HTTPError
 import numpy
-from memory_profiler import profile
+
 
 def getOnEpi():    
     newData = pd.read_csv("https://data.ontario.ca/dataset/f4f86e54-872d-43f8-8a86-3892fd3cb5e6/resource/ed270bb8-340b-41f9-a7c6-e8ef587e6d11/download/covidtesting.csv")
@@ -20,7 +20,7 @@ def getOnEpi():
     newData.columns = col
     return newData          
 
-@profile
+
 def getDemographyData():
     conf_phu = pd.read_csv("https://data.ontario.ca/dataset/f4112442-bdc8-45d2-be3c-12efae72fb27/resource/455fd63b-603d-4608-8216-7d8647f43350/download/conposcovidloc.csv", 
     usecols = ['Case_Reported_Date', 'Age_Group', 'Client_Gender'], 
@@ -55,5 +55,3 @@ def getDemographyData():
     }
     return demography
 
-if __name__ == '__main__':
-    getDemographyData
