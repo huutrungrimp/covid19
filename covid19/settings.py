@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import django_heroku
+from django.core.management.commands.runserver import Command as runserver
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -107,6 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+runserver.default_port = "8000"
 
 
 # Internationalization
