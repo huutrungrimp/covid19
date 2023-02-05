@@ -10,7 +10,6 @@ from urllib.error import HTTPError
 from .getData import getOnEpi, getDemographyData
 # import numpy
 from memory_profiler import profile
-import requests
 
 
 @profile
